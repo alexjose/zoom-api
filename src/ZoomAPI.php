@@ -1,32 +1,32 @@
 <?php
 
-namespace Zoom;
+namespace alexjose;
 
 use GuzzleHttp\Client;
 
 class ZoomApi{
 
-    private $api_key;
-	private $api_secret;
-	private $api_url;
+    private $apiKey;
+	private $apiSecret;
+	private $apiUrl;
     private $apiClient;
 
-    public function __construct($api_key, $api_secret, $api_url = 'https://api.zoom.us/v1/')
+    public function __construct($apiKey, $apiSecret, $apiUrl = 'https://api.zoom.us/v1/')
     {
-        $this->api_key = $api_key;
-        $this->api_secret = $api_secret;
-        $this->api_url = $api_url;
+        $this->apiKey = $apiKey;
+        $this->apiSecret = $apiSecret;
+        $this->apiUrl = $apiUrl;
 
         $this->apiClient = new Client([
             // Base URI is used with relative requests
-            'base_uri' => $this->api_url,
+            'base_uri' => $this->apiUrl,
         ]);
     }
 
     public function send($uri, $data = [])
     {
-        $data['api_key'] = $this->api_key;
-        $data['api_secret'] = $this->api_secret;
+        $data['api_key'] = $this->apiKey;
+        $data['api_secret'] = $this->apiSecret;
 
         try{
             $response = $this->apiClient->post($uri,  [
@@ -46,14 +46,14 @@ class ZoomApi{
     * 
     * List Users
     *
-    * @param integer $page_size The amount of records returns within a single API call. Max of 300 users.
-    * @param integer $page_number Current page number of returned records. Default to 1.
+    * @param integer $pageSize The amount of records returns within a single API call. Max of 300 users.
+    * @param integer $pageNumber Current page number of returned records. Default to 1.
     * @return array
     */
-    public function listUsers($page_size = 30, $page_number = 1)
+    public function listUsers($pageSize = 30, $pageNumber = 1)
     {
-        $data['page_size'] = $page_size;
-        $data['page_number'] = $page_number;
+        $data['page_size'] = $pageSize;
+        $data['page_number'] = $pageNumber;
 
         return $this->send('user/list', $data);
     }
@@ -62,13 +62,13 @@ class ZoomApi{
     * 
     * Create A Meeting
     *
-    * @param string $host_id Meeting host user ID. Can be any user under this account
+    * @param string $hostId Meeting host user ID. Can be any user under this account
     * @param integer $type Meeting type
     * @param string $topic Meeting topic. Max of 300 characters
     * @param array $data Additional Data
     * @return array
     */
-    public function createMeeting($host_id, $type, $topic, $data = [])
+    public function createMeeting($hostId, $type, $topic, $data = [])
     {
 
         $validTypes = [1, 2, 3, 8];
