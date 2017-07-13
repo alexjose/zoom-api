@@ -106,7 +106,7 @@ class ZoomApi{
             throw new \InvalidArgumentException('Invalid data passed. `' . implode(", ", $invalidDataKeys) . '` are not allowed.');
         }
 
-        $data['host_id'] = $host_id;
+        $data['host_id'] = $hostId;
         $data['type'] = $type;
         $data['topic'] = $topic;
 
