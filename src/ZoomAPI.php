@@ -100,7 +100,7 @@ class ZoomApi{
             'option_auto_record_type',
         ];
 
-        $invalidDataKeys = array_diff_key($data, $optionalFields);
+        $invalidDataKeys = array_diff(array_keys($data), $optionalFields);
 
         if(!empty($invalidDataKeys)){
             throw new \InvalidArgumentException('Invalid data passed. `' . implode(", ", $invalidDataKeys) . '` are not allowed.');
