@@ -6,7 +6,7 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
-        "psr-4": {"Zoom\\": "src/"}
+        "psr-4": {"alexjose\\": "src/"}
     },
     "authors": [
         {
